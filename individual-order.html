@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+    <div class="top-bar">
+    <div class="logo-container">
+    <a href="главная.html">
+        <img src="logo.png" alt="Whimsy Logo">
+    </a>
+</div>
+    <nav class="menu">
+        <ul>
+            <li><a href="katalog.html">Каталог</a></li>
+            <li><a href="individual-order.html">Индивидуальный заказ</a></li>
+            <li><a href="about-us.html">О нас</a></li>
+        </ul>
+    </nav>
+    <div class="cart-icon">
+        <img src="cart.png" alt="Shopping Cart" onclick="location.href='korzina.html';">
+    </div>
+</div>
+</header>
+</div>
+<div class="order-form">
+        <h1>Индивидуальный заказ</h1>
+        <form action="submit_order.php" method="post">
+            <label for="first-name">Имя:</label>
+            <input type="text" id="first-name" name="first-name" required>
+            <label for="last-name">Фамилия:</label>
+            <input type="text" id="last-name" name="last-name" required>
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required>
+			<p></p>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+			<p></p>
+            <label for="product-name">Название желаемого изделия:</label>
+            <input type="text" id="product-name" name="product-name" required>
+            <label for="product-description">Описание:</label>
+            <textarea id="product-description" name="product-description" rows="4" required></textarea>
+            <label for="references">Загрузка референсов:</label>
+            <input type="file" id="references" name="references">
+			<p></p>
+            <label for="fabric-choice">Выбор ткани:</label>
+            <select id="fabric-choice" name="fabric-choice" onchange="updateColors()">
+                <option value="cotton">Хлопок</option>
+                <option value="silk">Шелк</option>
+                <option value="wool">Шерсть</option>
+                <option value="linen">Лен</option>
+                <option value="velvet">Вельвет</option>
+            </select>
+            <label for="color-choice">Выбор цвета:</label>
+            <select id="color-choice" name="color-choice">
+                <!-- Варианты цветов будут добавлены динамически -->
+            </select>
+            <button type="submit">Отправить заказ</button>
+        </form>
+    </div>
+    <script>
+        function updateColors() {
+            const fabricChoice = document.getElementById("fabric-choice").value;
+            const colorChoice = document.getElementById("color-choice");
+            colorChoice.innerHTML = ""; // Очищаем список цветов
+
+            // Добавляем варианты цветов в зависимости от выбранной ткани
+            if (fabricChoice === "cotton") {
+                addColorOption("Белый", "#ffffff");
+                addColorOption("Синий", "#0000ff");
+                // Добавьте другие варианты цветов для хлопка
+            } else if (fabricChoice === "silk") {
+                addColorOption("Красный", "#ff0000");
+                addColorOption("Золотой", "#ffd700");
+                // Добавьте другие варианты цветов для шелка
+            } else if (fabricChoice === "wool") {
+                addColorOption("Серый", "#808080");
+                addColorOption("Коричневый", "#a52a2a");
+                // Добавьте другие варианты цветов для шерсти
+            } else if (fabricChoice === "linen") {
+                addColorOption("Натуральный", "#f5deb3");
+                addColorOption("Светло-коричневый", "#d2b48c");
+                // Добавьте другие варианты цветов для льна
+            } else if (fabricChoice === "velvet") {
+                addColorOption("Темно-красный", "#8b0000");
+                addColorOption("Темно-зеленый", "#006400");
+                // Добавьте другие варианты цветов для вельвета
+            }
+            
+            function addColorOption(color, hexCode) {
+                const option = document.createElement("option");
+                option.value = hexCode;
+                option.textContent = color;
+                colorChoice.appendChild(option);
+            }
+        }
+    </script>
+</footer>
+    <script src="script.js"></script>
+</body>
+</html>
